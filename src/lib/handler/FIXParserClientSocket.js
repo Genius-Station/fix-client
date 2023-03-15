@@ -55,7 +55,9 @@ class FIXParserClientSocket extends FIXParserClientBase {
         this.fixParser.setNextTargetMsgSeqNum(
           this.fixParser.getNextTargetMsgSeqNum() + 1
         );
-        this.socket.write(message.encode());
+        const encodedMessage = message.encode();
+        console.log(`Send ${encodedMessage.replaceAll('\x01', '|')}`);
+        this.socket.write(encodedMessage);
       } else {
         console.error(
           'FIXParserClientSocket: could not send message, message of wrong type'
