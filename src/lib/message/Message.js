@@ -171,8 +171,18 @@ class Message {
     this.data.push(field);
   }
 
+  /**
+   * Returns the first field found with the provided tag
+   */
   getField(tag) {
     return this.data.find((field) => field.tag === tag);
+  }
+
+  /**
+   * Returns an array containing all fields with the provided tag
+   */
+  getAllFields(tag) {
+    return this.data.filter((field) => field.tag === tag);
   }
 
   setField(field) {
