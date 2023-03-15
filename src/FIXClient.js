@@ -310,7 +310,10 @@ class FIXClient {
       new Field(Fields.MDEntryType, '0'),
       new Field(Fields.MDEntryType, '1'),
       new Field(Fields.NoRelatedSym, '1'),
-      new Field(Fields.Symbol, fixSymbolID)
+      new Field(Fields.Symbol, fixSymbolID),
+      new Field(Fields.SecurityID, fixSymbolID),
+      new Field(Fields.SecurityIDSource, '111'),
+      new Field(Fields.MDUpdateType, 0)
     );
     this.parser.send(order);
     return clientID
