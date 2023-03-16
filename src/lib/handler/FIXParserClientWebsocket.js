@@ -45,7 +45,7 @@ class FIXParserClientWebsocket extends FIXParserClientBase {
                     this.fixParser.getNextTargetMsgSeqNum() + 1
                 );
                 const encodedMessage = message.encode();
-                console.log(`Send ${encodedMessage.replace(/\x01/g, '|')}`);
+                // console.log(`Send ${encodedMessage.replace(/\x01/g, '|')}`);
                 this.socket.send(encodedMessage);
             } else {
                 console.error(
