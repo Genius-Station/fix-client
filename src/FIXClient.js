@@ -137,17 +137,22 @@ class FIXClient {
   }
 
   sendLogon() {
-    const logon = this.parser.createMessage(
-      ...this.standardHeader(Messages.Logon),
-      new Field(Fields.EncryptMethod, EncryptMethod.None), // 98
-      new Field(Fields.HeartBtInt, '30'), // 108
-      new Field(Fields.ResetSeqNumFlag, 'Y'), // 141
-      new Field(Fields.Username, this.accountID), // 553
-      new Field(Fields.Password, this.accountPassword), // 554
-    );
-    // const messages = this.parser.parse(logon.encode());
-    // console.log('[FIX] SENDING ', messages[0].description, FIXClient.generateResponseObj(messages[0]));
-    this.parser.send(logon);
+    try{
+      const logon = this.parser.createMessage(
+          ...this.standardHeader(Messages.Logon),
+          new Field(Fields.EncryptMethod, EncryptMethod.None), // 98
+          new Field(Fields.HeartBtInt, '30'), // 108
+          new Field(Fields.ResetSeqNumFlag, 'Y'), // 141
+          new Field(Fields.Username, this.accountID), // 553
+          new Field(Fields.Password, this.accountPassword), // 554
+      );
+       const messages = this.parser.parse(logon.encode());
+       console.log('[FIX] SENDING ', messages[0].description, FIXClient.generateResponseObj(messages[0]));
+       this.parser.send(logon);
+       console.log("logon success!!")
+    }catch (e) {
+      console.error("Error Logon", e )
+    }
   }
 
   sendLogout() {
