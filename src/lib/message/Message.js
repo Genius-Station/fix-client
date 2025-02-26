@@ -49,7 +49,7 @@ const calculateChecksum = (value) => {
   for (let i = 0; i < value.length; i++) {
     integerValues += value.charCodeAt(i);
   }
-  const paddedValue = Message.pad(integerValues & 255, 3); // eslint-disable-line no-use-before-define
+  const paddedValue = Message.pad(( integerValues & 255 ), 3); // eslint-disable-line no-use-before-define
   return paddedValue
 };
 
